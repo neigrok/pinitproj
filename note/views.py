@@ -84,3 +84,7 @@ def share_redirect(request, code):
         'notes': Note.objects.filter(user=sharelink.sharing_userid).order_by('-note_timestamp')
     }
     return render(request, 'note/note.html', context)
+
+
+def about(request):
+    return render(request, 'about.html')

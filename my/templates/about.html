@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}PIN iT{% endblock title %}</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+            <style>
+                body {
+                    background-image: url("http://cdn.paper4pc.com/images/space-cosmic-nebulae-stars-wallpaper-2.jpg");
+                }
+
+                .thumbnail {
+                    background-color: #f0f0f0;
+                }
+
+                .form-inline {
+                    padding: 20px;
+                }
+
+                .col-md-4 {
+                width: 33.33333333%;
+                }
+
+                .notes {
+                    height: 280px;
+                }
+
+                a, a:hover {
+                    color: yellow;
+                    text-decoration: underline;
+                }
+
+                p {
+                text-shadow: 2px 2px 3px black;
+                }
+            </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    {% if user.is_authenticated %}
+                        {% block addnote %}{% endblock addnote %}
+                    {% endif %}
+                </div>
+                    <div class="col-xs-6 col-md-4" style="float: right; padding: 20px; width: 15%">
+                        {% if user.is_authenticated %}
+                                <div class="input-group">
+                                  <input type="text" class="form-control" value="{{ user.username }}" disabled>
+                                  <span class="input-group-btn">
+                                    <a href="./logout"><button class="btn btn-primary" type="button">Logout</button></a>
+                                  </span>
+                                </div>
+
+                        {% else %}
+                            <h4  style="float: right; color: #ffffff;">
+                                <a href="./login"  class="btn btn-primary btn-right" role="button">Sign in</a> or
+                                <a href="./register"  class="btn btn-primary btn-right" role="button">Sign up</a>
+                            </h4>
+                        {% endif %}
+                    </div>
+                </div>
+            <div class="row">
+                    <div class="jumbotron" style="width: 50%; color: white; background-color: inherit; text-align: center; margin-left: auto; margin-right: auto;">
+                      <p>
+                          Hi, my name is Vasya, I'm python junior developer.<br>
+                          This site is my project for leaning django web framework.<br>
+
+                          It allows to create, save your bookmarks and share them.<br>
+
+                      </p>
+                          You can find its source code <a href="https://github.com/neigrok/pinitproj">here</a><br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                          Currently I'm looking for a part-time job in Saint-Petersburg, Russia<br>
+
+                          For any reason you can contact me: catastropheIX@gmail.com
+                      </p>
+                      <p><a class="btn btn-primary btn-lg" href="/" role="button">Main page</a></p>
+                    </div>
+            </div>
+        </div>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </body>
+</html>
