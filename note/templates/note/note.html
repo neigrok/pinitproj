@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ block.super}}
+{% endblock title %}
+
+{% block addnote %}
+<div class="form-inline text-center">
+ <div class="form-group">
+    <form method="post" action=".">{% csrf_token %}
+        {{ form }}
+        <input type="submit" value="+ add"  class="btn btn-s btn-default">
+    </form>
+    </div>
+</div>
+{% endblock addnote %}
+
+{% block notes %}
+    {% for note in notes %}
+        <div class="col-sm-8 col-md-4 notes">
+          <a href="{{ note.note_url }}">
+            <div class="thumbnail">
+              <div class="caption">
+                    <h3>{{ note.note_title }}<br><small> {{ note.note_timestamp|timesince }} ago</small></h3>
+                    <p>{{ note.note_text|linebreaks|truncatechars:140 }}</p>
+                    <form action="." method="post">{% csrf_token %}
+                        <button type="submit" name="delete" value="{{ note.pk }}" class="btn btn-danger btn-sm" style="position:absolute; top:5px; right:20px; margin:0;">x</button>
+                    </form>
+              </div>
+            </div>
+          </a>
+        </div>
+
+    {% endfor %}
+{% endblock notes %}
+
+{% cycle "" "</div><div class='row'>" %}
+
+{% block search %}
+    <hr>
+    <div class="form-inline text-center">
+        <div class="form-group">
+            <form method="post" action=".">{% csrf_token %}
+                {{ search_form }}
+                <input type="submit" value="Search"  class="btn btn-s btn-default">
+            </form>
+        </div>
+    </div>
+    <hr>
+{% endblock search %}
+
+{% block share %}
+    <div class="form-inline text-center">
+        <div class="form-group">
+            <form method="post" action=".">{% csrf_token %}
+                <div class="input-group">
+                    <input type="text" class="form-control" value="{% if shorten_url %}{{ shorten_url }}{% else %}Your link will appear here{% endif %}" disabled>
+                    <span class="input-group-btn">
+                        <input type="hidden" name="share" value="{{ user }}">
+                        <input type="submit" value="Share notes"  class="btn btn-s btn-default">
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock share %}

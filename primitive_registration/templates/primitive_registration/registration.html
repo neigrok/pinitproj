@@ -1,0 +1,31 @@
+{% extends 'base_reg.html' %}
+
+{% block title %}
+    {{ block.super}} | Sign up
+{% endblock title %}
+
+{% block top %}
+<div class="row">
+    <div class="col-xs-6 col-md-4">
+        <h4  style="float: left; color: #ffffff;">
+            <a href="/"  class="btn btn-primary btn-right" role="button"><--</a>
+            <a href="./login"  class="btn btn-primary btn-right" role="button">Sign in</a>
+        </h4>
+    </div>
+</div>
+{% endblock top %}
+
+{% block form %}
+    <form action="register" method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Sign up" class="btn btn-success">
+    </form>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock form %}
