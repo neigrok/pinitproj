@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Note(models.Model):
     class Meta:
-        db_table = 'note1'
+        db_table = 'note'
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     note_url = models.CharField(max_length=60)
     note_title = models.CharField(max_length=100)
