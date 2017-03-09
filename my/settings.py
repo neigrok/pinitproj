@@ -58,10 +58,10 @@ ROOT_URLCONF = 'my.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, r'my\templates'),
-                 os.path.join(BASE_DIR, r'guestbook\templates'),
-                 os.path.join(BASE_DIR, r'primitive_registration\templates'),
-                 os.path.join(BASE_DIR, r'note\templates')],
+        'DIRS': [os.path.join(BASE_DIR, r'my/templates'),
+                 os.path.join(BASE_DIR, r'guestbook/templates'),
+                 os.path.join(BASE_DIR, r'primitive_registration/templates'),
+                 os.path.join(BASE_DIR, r'note/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
