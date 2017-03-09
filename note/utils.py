@@ -16,7 +16,10 @@ def collectinfo(url):
 
     #extract title
     title_group = re.search(re_title, page)
-    title = title_group.group()[7: -8]
+    try:
+        title = title_group.group()[7: -8]
+    except AttributeError:
+        title = url[7:]
 
     #extract first paragraph
     paragraph_group = re.search(re_p, page)
