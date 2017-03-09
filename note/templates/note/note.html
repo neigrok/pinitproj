@@ -16,22 +16,24 @@
 {% endblock addnote %}
 
 {% block notes %}
-    {% for note in notes %}
-        <div class="col-sm-8 col-md-4 notes">
-          <a href="{{ note.note_url }}">
-            <div class="thumbnail">
-              <div class="caption">
-                    <h3>{{ note.note_title }}<br><small> {{ note.note_timestamp|timesince }} ago</small></h3>
-                    <p>{{ note.note_text|linebreaks|truncatechars:140 }}</p>
-                    <form action="." method="post">{% csrf_token %}
-                        <button type="submit" name="delete" value="{{ note.pk }}" class="btn btn-danger btn-sm" style="position:absolute; top:5px; right:20px; margin:0;">x</button>
-                    </form>
-              </div>
+    {% if notes %}
+        {% for note in notes %}
+            <div class="col-sm-8 col-md-4 notes">
+              <a href="{{ note.note_url }}">
+                <div class="thumbnail">
+                  <div class="caption">
+                        <h3>{{ note.note_title }}<br><small> {{ note.note_timestamp|timesince }} ago</small></h3>
+                        <p>{{ note.note_text|linebreaks|truncatechars:140 }}</p>
+                        <form action="." method="post">{% csrf_token %}
+                            <button type="submit" name="delete" value="{{ note.pk }}" class="btn btn-danger btn-sm" style="position:absolute; top:5px; right:20px; margin:0;">x</button>
+                        </form>
+                  </div>
+                </div>
+              </a>
             </div>
-          </a>
-        </div>
 
-    {% endfor %}
+        {% endfor %}
+    {% endif %}
 {% endblock notes %}
 
 {% cycle "" "</div><div class='row'>" %}
