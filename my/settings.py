@@ -25,7 +25,7 @@ SECRET_KEY = 'v=^t_a96!5drz4535jggr-vrh%ut4=ndrtns3dbdelklad&itz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://bookmarkhelper.herokuapp.com/', 'localhost']
+ALLOWED_HOSTS = ['bookmarkhelper.herokuapp.com', 'localhost']
 
 # Application definition
 
