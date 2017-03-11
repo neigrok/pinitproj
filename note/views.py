@@ -28,7 +28,9 @@ class NotesView(View):
         if request.POST.get('delete'):
             # doesnt require handling (I think)
             try:
-                Note.objects.get(pk=request.POST.get('delete')).delete()
+                obj = Note.objects.get(pk=request.POST.get('delete'))
+                if obj.user == request.user:
+                    obj.delete()
             except ObjectDoesNotExist:
                 pass
 
@@ -57,15 +59,12 @@ class NotesView(View):
 
         newpin = PinForm(request.POST)
         if newpin.is_valid():
-            try:
-                new_note = Note()
-                new_note.user = request.user
-                new_note.note_url = newpin.cleaned_data["url"]
-                new_note.note_title, new_note.note_text = collectinfo(new_note.note_url)
-                new_note.save()
-            except ConnectionError:
-                # need solution
-                pass
+            new_note = Note()
+            new_note.user = request.user
+            new_note.note_url = newpin.cleaned_data["url"]
+            new_note.note_title, new_note.note_text = collectinfo(new_note.note_url)
+            new_note.save()
+
 
         return render(request, 'note/note.html', context)
 

@@ -1,10 +1,10 @@
 import requests
 import re
-from django.utils.translation import ugettext_lazy as _
 import random
+from html.parser import HTMLParser
 
-re_title = re.compile(r'<title>(.*)<.title>', flags=re.I)
-re_p = re.compile(r'<p>(.*)<.p>', flags=re.I)
+re_title = re.compile(r'<title>\n?(.*)\n?<.title>', flags=re.I | re.MULTILINE | re.DOTALL)
+re_p = re.compile(r'<p>(.*)<.p>', flags=re.I | re.MULTILINE | re.DOTALL)
 re_cleaner = re.compile('<.*?>')
 
 def collectinfo(url):
@@ -12,7 +12,12 @@ def collectinfo(url):
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1)\
                     AppleWebKit/537.36 (KHTML, like Gecko)\
                      Chrome/39.0.2171.95 Safari/537.36'}
-    page = requests.get(url, headers=headers).text
+    try:
+        page = requests.get(url, headers=headers).text
+    except Exception as e:
+        #need solution
+        print(e)
+        return url, 'Error'
 
     #extract title
     title_group = re.search(re_title, page)
@@ -26,8 +31,9 @@ def collectinfo(url):
     if paragraph_group:
         paragraph = paragraph_group.group()[3: -4]
     else:
-        paragraph = "i ll solve it"
-    return title, _(cleantags(paragraph))
+        #blank then
+        paragraph = ""
+    return title, cleantags(paragraph)[:150].replace('\n', '')
 
 
 #clean all html tags from a string
