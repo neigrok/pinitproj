@@ -47,7 +47,7 @@ class Register(View):
             messages.add_message(request, messages.INFO, 'Password mismatch')
 
         if user:
-            messages.add_message(request, messages.SUCCESS, 'Registration successful. Please, sign in')
+            messages.add_message(request, messages.SUCCESS, 'Registration successful. Please, sign in.')
             return redirect('../login')
         else:
             return redirect('/register')
