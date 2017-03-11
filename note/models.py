@@ -6,9 +6,9 @@ class Note(models.Model):
     class Meta:
         db_table = 'note'
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    note_url = models.CharField(max_length=150)
+    note_url = models.CharField(max_length=60)
     note_title = models.CharField(max_length=100)
-    note_text = models.CharField(max_length=600)
+    note_text = models.CharField(max_length=160)
     note_tags = models.CharField(max_length=150)
     note_timestamp = models.DateTimeField(auto_now_add=True)
 

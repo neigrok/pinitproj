@@ -1,7 +1,6 @@
 import requests
 import re
 import random
-from html.parser import HTMLParser
 
 re_title = re.compile(r'<title>\n?(.*)\n?<.title>', flags=re.I | re.MULTILINE | re.DOTALL)
 re_p = re.compile(r'<p>(.*)<.p>', flags=re.I | re.MULTILINE | re.DOTALL)
