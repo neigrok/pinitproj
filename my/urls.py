@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from guestbook.views import GuestbookView
+
 from note.views import NotesView, share_redirect, about
 from primitive_registration import urls
 
@@ -24,6 +24,5 @@ urlpatterns = [
     url(r'^$', NotesView.as_view()),
     url(r'^about$', about),
     url(r'^sharing/(?P<code>.{8})$', share_redirect),
-    url(r'^guestbook/$', GuestbookView.as_view()),
     url(r'', include(urls)),
 ]

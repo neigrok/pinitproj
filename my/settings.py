@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my apps
-    'guestbook',
     'note',
     'primitive_registration',
 ]
@@ -59,7 +58,6 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, r'my/templates'),
-                 os.path.join(BASE_DIR, r'guestbook/templates'),
                  os.path.join(BASE_DIR, r'primitive_registration/templates'),
                  os.path.join(BASE_DIR, r'note/templates')],
         'APP_DIRS': True,
